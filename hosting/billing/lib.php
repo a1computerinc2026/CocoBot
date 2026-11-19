@@ -287,6 +287,44 @@ function update_subscription(string $provider, string $subId, array $fields): vo
     $stmt->execute($params);
 }
 
+/**
+ * Simple per-IP fixed-window rate limit backed by a temp file. Returns true when
+ * the caller has exceeded `max` requests in `window` seconds. Fails open if the
+ * temp dir is not writable (never blocks a legitimate provider callback).
+ */
+function rate_limited(string $bucket, int $max = 60, int $window = 60): bool
+{
+    $ip = $_SERVER['REMOTE_ADDR'] ?? '0.0.0.0';
+    $file = sys_get_temp_dir() . '/coco_rl_' . hash('sha256', $bucket . '|' . $ip) . '.json';
+    $now = time();
+    $fp = @fopen($file, 'c+');
+    if ($fp === false) {
+        return false;
+    }
+    try {
+        if (!flock($fp, LOCK_EX)) {
+            return false;
+        }
+        $raw = stream_get_contents($fp);
+        $state = $raw ? json_decode($raw, true) : null;
+        $start = (is_array($state) && isset($state['t'])) ? (int) $state['t'] : $now;
+        $count = (is_array($state) && isset($state['c'])) ? (int) $state['c'] : 0;
+        if ($now - $start > $window) {
+            $start = $now;
+            $count = 0;
+        }
+        $count++;
+        ftruncate($fp, 0);
+        rewind($fp);
+        fwrite($fp, json_encode(['t' => $start, 'c' => $count]));
+        fflush($fp);
+        return $count > $max;
+    } finally {
+        flock($fp, LOCK_UN);
+        fclose($fp);
+    }
+}
+
 function provisioner_call(string $action, string $email, string $plan = ''): bool
 {
     $cfg = config()['provisioner'] ?? [];

@@ -26,6 +26,8 @@ const CONFIG = {
   portRangeEnd: Number(process.env.PROVISIONER_PORT_END ?? 9999),
 };
 
+const TIERS = ["starter", "personal", "pro", "max"];
+
 if (!CONFIG.sharedSecret) {
   console.error("PROVISIONER_SHARED_SECRET is required");
   process.exit(1);
@@ -93,6 +95,7 @@ function writeCaddyAndReload(state) {
 }
 
 function provision(email, plan) {
+  if (!TIERS.includes(plan)) plan = "pro";
   const state = loadState();
   const slug = slugFor(email);
   const existing = Object.values(state.instances).find((i) => i.slug === slug);
@@ -153,9 +156,15 @@ function authorized(req) {
   return a.length === b.length && timingSafeEqual(a, b);
 }
 
+const MAX_BODY_BYTES = 64 * 1024;
 async function readBody(req) {
   const chunks = [];
-  for await (const chunk of req) chunks.push(chunk);
+  let length = 0;
+  for await (const chunk of req) {
+    length += chunk.length;
+    if (length > MAX_BODY_BYTES) throw new Error("body too large");
+    chunks.push(chunk);
+  }
   return Buffer.concat(chunks).toString("utf8");
 }
 

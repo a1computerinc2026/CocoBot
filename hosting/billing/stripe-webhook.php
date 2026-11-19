@@ -5,6 +5,13 @@
 //         customer.subscription.deleted, invoice.payment_failed
 require __DIR__ . '/lib.php';
 
+if (rate_limited('stripe-webhook', 120, 60)) {
+    http_response_code(429);
+    header('Content-Type: application/json');
+    echo json_encode(['error' => 'rate_limited']);
+    exit;
+}
+
 $payload = file_get_contents('php://input') ?: '';
 $header  = $_SERVER['HTTP_STRIPE_SIGNATURE'] ?? '';
 

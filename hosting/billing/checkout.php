@@ -3,16 +3,22 @@
 // in-page Checkout widget. Reads tier + provider from the POST/GET request.
 require __DIR__ . '/lib.php';
 
-$tier = (string) ($_REQUEST['tier'] ?? '');
+if (($_SERVER['REQUEST_METHOD'] ?? 'GET') !== 'POST') {
+    http_response_code(405);
+    header('Allow: POST');
+    exit('method not allowed');
+}
+
+$tier = (string) ($_POST['tier'] ?? '');
 if (!in_array($tier, TIERS, true)) {
     http_response_code(400);
     exit('unknown tier');
 }
-$provider = (string) ($_REQUEST['provider'] ?? '');
+$provider = (string) ($_POST['provider'] ?? '');
 if ($provider === '' ) {
     $provider = active_provider();
 }
-$email = trim((string) ($_REQUEST['email'] ?? ''));
+$email = trim((string) ($_POST['email'] ?? ''));
 
 if ($provider === 'stripe') {
     try {

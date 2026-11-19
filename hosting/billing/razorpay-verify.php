@@ -3,6 +3,13 @@
 // the subscription for the order's tier.
 require __DIR__ . '/lib.php';
 
+if (rate_limited('razorpay-verify', 60, 60)) {
+    http_response_code(429);
+    header('Content-Type: application/json');
+    echo json_encode(['error' => 'rate_limited']);
+    exit;
+}
+
 $orderId   = (string) ($_POST['razorpay_order_id'] ?? '');
 $paymentId = (string) ($_POST['razorpay_payment_id'] ?? '');
 $signature = (string) ($_POST['razorpay_signature'] ?? '');
