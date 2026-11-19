@@ -12,9 +12,9 @@ import { z } from "zod";
 
 export const ANNOUNCEMENTS_FILE = "announcements/announcements.json";
 export const ANNOUNCEMENTS_SCHEMA_FILE = "announcements/announcements.schema.json";
-export const ANNOUNCEMENTS_URL = `https://raw.githubusercontent.com/a1computerinc2026/CocoBot/main/${ANNOUNCEMENTS_FILE}`;
+export const ANNOUNCEMENTS_URL = `https://raw.githubusercontent.com/a1computerinc2026/cocobot-releases/main/${ANNOUNCEMENTS_FILE}`;
 /** Pictures: files in the repository's announcements/ folder on main, as raw.githubusercontent.com serves them. */
-export const ANNOUNCEMENT_IMAGE_PREFIX = "https://raw.githubusercontent.com/a1computerinc2026/CocoBot/main/announcements/";
+export const ANNOUNCEMENT_IMAGE_PREFIX = "https://raw.githubusercontent.com/a1computerinc2026/cocobot-releases/main/announcements/";
 
 /** An install reads at most this many cards, in file order; CI refuses a longer list. */
 export const MAX_CARDS = 20;

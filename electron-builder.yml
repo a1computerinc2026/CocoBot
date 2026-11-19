@@ -16,7 +16,7 @@ protocols:
 publish:
   - provider: github
     owner: a1computerinc2026
-    repo: CocoBot
+    repo: cocobot-releases
 
 directories:
   buildResources: build
