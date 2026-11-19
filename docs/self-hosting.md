@@ -2,7 +2,7 @@
 
 To keep CocoBot and its agents on your current computer and use a VPS only as a
 bot’s remote desktop, see [Bring Your Own VPS](byo-vps.md) and the
-[published setup guide](https://docs.cocobot.com/docs/computers/byo-vps).
+[published setup guide](https://docs.cocobot.ss2.in/docs/computers/byo-vps).
 
 Run the server on a machine you control (a VPS, a home server, a Mac mini in a
 closet). Then connect the desktop app, browsers and phones to it. Every path
@@ -27,7 +27,7 @@ For server feature switches, defaults and configuration-file instructions, see
 | A domain name, and ports 80 and 443 open | `npx cocobot serve --domain coco.example.com` | `https://coco.example.com/pair#code=…` |
 | Tailscale on the server and your devices | `npx cocobot serve --tailscale` | `https://<machine>.<tailnet>.ts.net/pair#code=…` |
 | Only this network (home or office) | `npx cocobot serve --lan` | `http://192.168.1.20:8799/pair#code=…` |
-| Nothing at all | `npx cocobot login`, then `npx cocobot serve --tunnel` | `https://c-….cocobot.com/pair#code=…` |
+| Nothing at all | `npx cocobot login`, then `npx cocobot serve --tunnel` | `https://c-….cocobot.ss2.in/pair#code=…` |
 | Only the phone app, from anywhere (a machine with no tunnel address, for now) | `npx cocobot login --relay`, then `npx cocobot serve --relay` | a QR for the CocoBot app ([CocoBot Relay](phone-relay-server.md)) |
 
 `--lan` can be added to any of the others. Plain `http://` is only for a
@@ -367,7 +367,7 @@ too.
   says so and stays on loopback. Plain http travels in clear, so use it only
   on a network you trust.
 - **`--tunnel`**: `npx cocobot login` reserves an address like
-  `https://c-….cocobot.com` for this machine (an emailed code signs it
+  `https://c-….cocobot.ss2.in` for this machine (an emailed code signs it
   in). `serve --tunnel` connects it through a Cloudflare tunnel, the same one
   the desktop app uses for its companion. The first run downloads
   `cloudflared` (pinned version and digest) into the data dir. Only traffic
@@ -1154,7 +1154,7 @@ is bootstrapped; while it does, Settings refuses to change that list and says
 which variable to change instead. One that is empty, as `.env.example` and the
 Compose files leave them, leaves the list to Settings.
 
-The code itself comes from `accounts.cocobot.com`, the CocoBot
+The code itself comes from `accounts.cocobot.ss2.in`, the CocoBot
 account service, so your server needs no email credentials. Your server asks
 it to send the code, checks the answer, and then issues its own session
 cookie: the browser only ever talks to your server, and who is welcome is

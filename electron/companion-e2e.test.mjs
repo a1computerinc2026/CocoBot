@@ -15,7 +15,7 @@ const HOST_ID = "lz81isB3BuNV6rHgYgG3Wg";
 const grant = (overrides = {}) => ({
   token: "eyJ2IjoxfQ.c2lnbmF0dXJl",
   hostId: HOST_ID,
-  nodes: ["relay1.cocobot.com", "relay2.cocobot.com"],
+  nodes: ["relay1.cocobot.ss2.in", "relay2.cocobot.ss2.in"],
   expiresAt: 10 * 60 * 60_000,
   refreshAfter: 60 * 60_000,
   ...overrides,

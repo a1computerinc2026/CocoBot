@@ -60,11 +60,11 @@ describe("desktop companion endpoint", () => {
     expect(normalizeTailscaleCompanionEndpoint("http://HOST.example-tailnet.ts.net:9910/")).toBe(
       "http://host.example-tailnet.ts.net:9910",
     );
-    expect(normalizeDesktopCompanionEndpoint(`https://${LABEL}.cocobot.com`)).toBe(
-      `https://${LABEL}.cocobot.com`,
+    expect(normalizeDesktopCompanionEndpoint(`https://${LABEL}.cocobot.ss2.in`)).toBe(
+      `https://${LABEL}.cocobot.ss2.in`,
     );
-    expect(normalizeDesktopCompanionEndpoint(`${LABEL}.cocobot.com`)).toBe(
-      `https://${LABEL}.cocobot.com`,
+    expect(normalizeDesktopCompanionEndpoint(`${LABEL}.cocobot.ss2.in`)).toBe(
+      `https://${LABEL}.cocobot.ss2.in`,
     );
     // The control plane's second Cloudflare account gives addresses here.
     expect(normalizeDesktopCompanionEndpoint(`https://${LABEL}.cocobot.si`)).toBe(
@@ -75,15 +75,15 @@ describe("desktop companion endpoint", () => {
     );
     for (const endpoint of [
       "https://unrelated.example.com",
-      `http://${LABEL}.cocobot.com`,
+      `http://${LABEL}.cocobot.ss2.in`,
       "http://10.0.0.4:8810",
       "http://host.local:8810",
       "https://10.0.0.4",
       "http://host.example-tailnet.ts.net/path",
-      `https://${LABEL}.cocobot.com/path`,
+      `https://${LABEL}.cocobot.ss2.in/path`,
       "http://user@host.example-tailnet.ts.net",
       "http://host.example-tailnet.ts.net.evil.test",
-      `https://${LABEL}.cocobot.com.evil.test`,
+      `https://${LABEL}.cocobot.ss2.in.evil.test`,
       `http://${LABEL}.cocobot.si`,
       `https://${LABEL}.cocobot.si/path`,
       `https://${LABEL}.cocobot.si.evil.test`,
@@ -93,8 +93,8 @@ describe("desktop companion endpoint", () => {
       `https://${LABEL}.evilcocobot.si`,
       "https://www.cocobot.si",
       "https://app.cocobot.si",
-      "https://accounts.cocobot.com",
-      "https://c-opaque.cocobot.com",
+      "https://accounts.cocobot.ss2.in",
+      "https://c-opaque.cocobot.ss2.in",
       "https://c-opaque.cocobot.si",
       `https://${LABEL.slice(0, -1)}.cocobot.si`,
       `https://${LABEL}0.cocobot.si`,
@@ -109,7 +109,7 @@ describe("desktop companion endpoint", () => {
   it("accepts one c-<32 hex> label under each listed domain, and only those", () => {
     // The third domain is a one-line change; until the owner names it, nothing new is accepted.
     expect(NEXT_MANAGED_COMPANION_HOST_SUFFIX).toBe("");
-    expect(MANAGED_COMPANION_HOST_SUFFIXES).toEqual(["cocobot.com", "cocobot.si"]);
+    expect(MANAGED_COMPANION_HOST_SUFFIXES).toEqual(["cocobot.ss2.in", "cocobot.si"]);
     expect(Object.isFrozen(MANAGED_COMPANION_HOST_SUFFIXES)).toBe(true);
     for (const suffix of MANAGED_COMPANION_HOST_SUFFIXES) {
       expect(suffix).toMatch(/^(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z]{2,63}$/);
@@ -127,13 +127,13 @@ describe("desktop companion endpoint", () => {
         expect(normalizeDesktopCompanionEndpoint(near), near).toBe("");
       }
     }
-    for (const unlisted of ["example.net", "cocobot.net", "cocobot.com", "si", "com", ""]) {
+    for (const unlisted of ["example.net", "cocobot.net", "cocobot.ss2.in", "si", "com", ""]) {
       expect(normalizeDesktopCompanionEndpoint(`https://${LABEL}.${unlisted}`), unlisted).toBe("");
     }
   });
 
   it("validates, adds, and removes the encrypted credential document field", () => {
-    const hostedAccess = { ...access, endpoint: `https://${LABEL}.cocobot.com` };
+    const hostedAccess = { ...access, endpoint: `https://${LABEL}.cocobot.ss2.in` };
     expect(desktopCompanionAccess({ [DESKTOP_COMPANION_FIELD]: hostedAccess })).toEqual(
       hostedAccess,
     );
@@ -193,15 +193,15 @@ describe("desktop companion pairing", () => {
       }),
     );
     const paired = await pairDesktopCompanion({
-      endpoint: `https://${LABEL}.cocobot.com`,
+      endpoint: `https://${LABEL}.cocobot.ss2.in`,
       code: "654321",
       deviceName: "Desktop client",
       requestId: "request-https-01",
       fetchImpl,
     });
-    expect(paired).toEqual({ ...access, endpoint: `https://${LABEL}.cocobot.com` });
+    expect(paired).toEqual({ ...access, endpoint: `https://${LABEL}.cocobot.ss2.in` });
     expect(fetchImpl).toHaveBeenCalledWith(
-      `https://${LABEL}.cocobot.com/api/pair`,
+      `https://${LABEL}.cocobot.ss2.in/api/pair`,
       expect.objectContaining({ method: "POST" }),
     );
 

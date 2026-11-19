@@ -353,10 +353,10 @@ describe("where the relay credential comes from", () => {
 
   it("prefers the desktop app's message, including its 'none'", () => {
     writeFileSync(tunnelFile(), JSON.stringify({ companionInstallationCredential: CREDENTIAL }));
-    const source = new PhonePushAccessSource({ env: { OMB_PUSH_CREDENTIAL: CREDENTIAL }, tunnelFile: tunnelFile(), defaultControlPlane: "https://accounts.cocobot.com" });
+    const source = new PhonePushAccessSource({ env: { OMB_PUSH_CREDENTIAL: CREDENTIAL }, tunnelFile: tunnelFile(), defaultControlPlane: "https://accounts.cocobot.ss2.in" });
     expect(source.receive({ type: "something-else" })).toBe(false);
-    expect(source.receive({ type: PHONE_PUSH_DESKTOP_MESSAGE, access: { controlPlane: "https://accounts.cocobot.com/", credential: CREDENTIAL } })).toBe(true);
-    expect(source.current()).toEqual({ controlPlane: "https://accounts.cocobot.com", credential: CREDENTIAL });
+    expect(source.receive({ type: PHONE_PUSH_DESKTOP_MESSAGE, access: { controlPlane: "https://accounts.cocobot.ss2.in/", credential: CREDENTIAL } })).toBe(true);
+    expect(source.current()).toEqual({ controlPlane: "https://accounts.cocobot.ss2.in", credential: CREDENTIAL });
     source.receive({ type: PHONE_PUSH_DESKTOP_MESSAGE, access: null });
     expect(source.current()).toBeNull();
     source.receive({ type: PHONE_PUSH_DESKTOP_MESSAGE, access: { controlPlane: "http://evil.example", credential: CREDENTIAL } });
@@ -364,10 +364,10 @@ describe("where the relay credential comes from", () => {
   });
 
   it("then OMB_PUSH_CREDENTIAL, a fleet's credential, then `cocobot login`'s file", () => {
-    const at = (env: NodeJS.ProcessEnv) => new PhonePushAccessSource({ env, tunnelFile: tunnelFile(), defaultControlPlane: "https://accounts.cocobot.com" }).current();
+    const at = (env: NodeJS.ProcessEnv) => new PhonePushAccessSource({ env, tunnelFile: tunnelFile(), defaultControlPlane: "https://accounts.cocobot.ss2.in" }).current();
     expect(at({})).toBeNull();
     writeFileSync(tunnelFile(), JSON.stringify({ companionInstallationCredential: CREDENTIAL }));
-    expect(at({})).toEqual({ controlPlane: "https://accounts.cocobot.com", credential: CREDENTIAL });
+    expect(at({})).toEqual({ controlPlane: "https://accounts.cocobot.ss2.in", credential: CREDENTIAL });
     expect(at({ OMB_PUSH_CREDENTIAL: "not-a-credential" })).toBeNull();
     expect(at({ OMB_INSTALLATION_CREDENTIAL: CREDENTIAL, OMB_CONTROL_PLANE_URL: "http://127.0.0.1:8787" })).toEqual({ controlPlane: "http://127.0.0.1:8787", credential: CREDENTIAL });
   });

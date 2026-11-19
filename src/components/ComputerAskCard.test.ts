@@ -74,7 +74,7 @@ describe("a bot's ask to turn on what it needs from the person's computer", () =
   it("when the app there is the fix, links to it instead of a Turn on that can't work", () => {
     const markup = panel(ask({ reason: "closed" }));
     expect(markup).toContain("CocoBot isn&#x27;t open on your PC. Open it there and Scout carries on.");
-    expect(markup).toContain('href="https://www.cocobot.com/download"');
+    expect(markup).toContain('href="https://www.cocobot.ss2.in/download"');
     expect(markup).toContain(">Get CocoBot</a>");
     expect(markup).not.toContain(">Turn on</button>");
   });

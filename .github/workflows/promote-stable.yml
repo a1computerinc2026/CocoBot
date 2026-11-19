@@ -49,6 +49,8 @@ jobs:
       SOAKED: ${{ inputs.soaked }}
       URGENT: ${{ inputs.urgent }}
       ALLOW_OLDER: ${{ inputs.allow_older }}
+      RELEASES_TOKEN: ${{ secrets.RELEASES_PAT }}
+      RELEASES_URL: https://x-access-token:${{ secrets.RELEASES_PAT }}@github.com/a1computerinc2026/cocobot-releases.git
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -58,6 +60,10 @@ jobs:
         id: release
         run: |
           set -euo pipefail
+          if [ -z "$RELEASES_TOKEN" ]; then
+            echo "::error::RELEASES_PAT is required to publish the stable channel to a1computerinc2026/cocobot-releases"
+            exit 1
+          fi
           if [ "$SOAKED" != "true" ] && [ "$URGENT" != "true" ]; then
             echo "::error::Tick the box that says our own Clouds have run this version for 48 hours."
             exit 1
@@ -105,8 +111,8 @@ jobs:
           # Only a branch that is not there means "no record yet". Anything else that goes wrong while reading it stops
           # here: taken for a first promotion, it would skip the move-back guard and drop the history.
           current=()
-          if git ls-remote --exit-code --heads origin channels >/dev/null; then
-            git fetch --depth 1 origin channels
+          if git ls-remote --exit-code --heads "$RELEASES_URL" channels >/dev/null; then
+            git fetch --depth 1 "$RELEASES_URL" channels
             git show FETCH_HEAD:stable.json > "$RUNNER_TEMP/current.json"
             current=(--current "$RUNNER_TEMP/current.json")
             # Where the tags go back to if the record cannot be published after they moved.
@@ -151,7 +157,7 @@ jobs:
           set -euo pipefail
           work="$RUNNER_TEMP/channels"
           if [ "$FIRST" != true ]; then
-            git fetch --depth 1 origin channels
+            git fetch --depth 1 "$RELEASES_URL" channels
             # The record was written from this stable.json; one that changed since is not overwritten.
             git show FETCH_HEAD:stable.json | cmp -s - "$RUNNER_TEMP/current.json" || { echo "::error::stable.json changed while this ran. Run it again."; exit 1; }
             git worktree add --detach "$work" FETCH_HEAD
@@ -167,7 +173,7 @@ jobs:
             echo "stable.json already says $VERSION."
           else
             git -C "$work" -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" commit -q -m "stable: $VERSION"
-            git -C "$work" push origin HEAD:refs/heads/channels
+            git -C "$work" push "$RELEASES_URL" HEAD:refs/heads/channels
           fi
 
       - name: Put the stable tags back where the record says
@@ -196,5 +202,5 @@ jobs:
             echo "### Stable is now $VERSION"
             echo "- Server image: \`$SERVER\`"
             echo "- Cloud home image: \`$HOME_IMAGE\`"
-            echo "- Record: https://raw.githubusercontent.com/$GITHUB_REPOSITORY/channels/stable.json"
+            echo "- Record: https://raw.githubusercontent.com/a1computerinc2026/cocobot-releases/channels/stable.json"
           } >> "$GITHUB_STEP_SUMMARY"

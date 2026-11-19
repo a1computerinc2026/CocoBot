@@ -22,7 +22,7 @@ const SERVER_VERSION = (JSON.parse(readFileSync(new URL("../package.json", impor
 
 const signingKey = generateKeyPairSync("ed25519").privateKey;
 const keys = new Map([["k1", ed25519RawPublicKey(signingKey)]]);
-const NODE = "relay1.cocobot.com";
+const NODE = "relay1.cocobot.ss2.in";
 
 const cleanup: Array<() => unknown> = [];
 afterEach(async () => {
@@ -304,7 +304,7 @@ describe("phones through CocoBot Relay on a server", () => {
     // Docker's Caddy reaches the server over a socket too: that is no tunnel.
     expect(tunnelHolder({ OMB_TUNNEL_SOCKET: "/run/cocobot/http.sock" }, dir)).toBeNull();
     expect(tunnelHolder({ OMB_INSTALLATION_CREDENTIAL: "omb_install_y" }, dir)).toMatch(/^OMB_INSTALLATION_CREDENTIAL is set/);
-    writeFileSync(account, JSON.stringify({ companionInstallationCredential: "omb_install_x", managedCompanionEndpointUrl: "https://c-0123456789abcdef0123456789abcdef.cocobot.com" }));
+    writeFileSync(account, JSON.stringify({ companionInstallationCredential: "omb_install_x", managedCompanionEndpointUrl: "https://c-0123456789abcdef0123456789abcdef.cocobot.ss2.in" }));
     expect(tunnelHolder({}, dir)).toMatch(/holds a tunnel address/);
     writeFileSync(account, "not json");
     expect(tunnelHolder({}, dir)).toMatch(/could not be read/);

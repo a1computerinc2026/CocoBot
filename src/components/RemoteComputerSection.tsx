@@ -191,7 +191,7 @@ export function RemoteComputerSection({ hideWhenUnavailable = false, legacyOnly 
                 <input
                   value={endpoint}
                   onChange={(event) => setEndpoint(event.target.value)}
-                  placeholder="https://…cocobot.com or computer.tailnet.ts.net"
+                  placeholder="https://…cocobot.ss2.in or computer.tailnet.ts.net"
                   disabled={busy}
                   autoCapitalize="none"
                   autoCorrect="off"

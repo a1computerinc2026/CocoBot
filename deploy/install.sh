@@ -17,7 +17,7 @@ settings() {
   INSTALL_DIR="${OMB_INSTALL_DIR:-/opt/cocobot}"
   IMAGE_REPO=a1computerinc2026/cocobot
   RELEASES_URL=https://api.github.com/repos/a1computerinc2026/CocoBot/releases/latest
-  ADMIN_URL="${COCOBOT_ADMIN_URL:-https://cloud.cocobot.com}"
+  ADMIN_URL="${COCOBOT_ADMIN_URL:-https://cloud.cocobot.ss2.in}"
   SCRIPT_URL=https://raw.githubusercontent.com/a1computerinc2026/CocoBot/main/deploy/install.sh
   # Where the files this installer places come from: this repository at the tag of the version it installs, and at
   # main when that tag does not have them. OMB_INSTALL_SOURCE names one copy to use instead (https://… or file:///…).
@@ -395,8 +395,8 @@ check_outbound() {
     return
   fi
   ok "outbound: the image registries and Let's Encrypt are reachable"
-  if ! reachable https://accounts.cocobot.com/; then
-    note "accounts.cocobot.com is not reachable, so signing in with an emailed code needs a mail server of your own (OMB_SIGNIN_SMTP_URL). Pairing codes work without it."
+  if ! reachable https://accounts.cocobot.ss2.in/; then
+    note "accounts.cocobot.ss2.in is not reachable, so signing in with an emailed code needs a mail server of your own (OMB_SIGNIN_SMTP_URL). Pairing codes work without it."
   fi
 }
 

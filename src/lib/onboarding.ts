@@ -147,7 +147,7 @@ export function welcomeFinishedThisLaunch(): boolean {
   }
 }
 
-export const DEFAULT_ADMIN_ORIGIN = "https://admin.cocobot.com";
+export const DEFAULT_ADMIN_ORIGIN = "https://admin.cocobot.ss2.in";
 
 export function organisationSignIn<Bridge>(
   ogb: { organization?: Bridge; remoteClient?: { active?: boolean } } | undefined,

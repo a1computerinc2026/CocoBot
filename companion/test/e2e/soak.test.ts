@@ -49,12 +49,12 @@ describe.skipIf(!ENABLED)("a long screen stream through the relay", () => {
             }
             if (!refreshed && fraction > 0.3) {
               refreshed = true;
-              void rig.control("PUT", "/e2e/relay", { hostId: rig.hid, nodes: ["relay1.cocobot.com"], relayToken: rig.relayToken() });
+              void rig.control("PUT", "/e2e/relay", { hostId: rig.hid, nodes: ["relay1.cocobot.ss2.in"], relayToken: rig.relayToken() });
             }
             if (!replaced && fraction > 0.6) {
               replaced = true;
               // A different node list makes the sidecar redial: a new control socket replaces the old one.
-              void rig.control("PUT", "/e2e/relay", { hostId: rig.hid, nodes: ["relay1.cocobot.com", "relay2.cocobot.com"], relayToken: rig.relayToken() });
+              void rig.control("PUT", "/e2e/relay", { hostId: rig.hid, nodes: ["relay1.cocobot.ss2.in", "relay2.cocobot.ss2.in"], relayToken: rig.relayToken() });
             }
           });
           res.on("end", resolve);

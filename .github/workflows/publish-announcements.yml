@@ -1,0 +1,62 @@
+name: Publish announcements
+
+# The in-app announcements feed (shared/announcements.ts) is read by every
+# install from the PUBLIC cocobot-releases repo, not from this private source
+# repo. This keeps announcements/announcements.json (and its pictures) mirrored
+# to cocobot-releases/main whenever they change on main here.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "announcements/**"
+      - ".github/workflows/publish-announcements.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: publish-announcements
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    name: Mirror announcements to cocobot-releases
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: main
+
+      - name: Sync announcements/ to the public releases repo
+        env:
+          RELEASES_TOKEN: ${{ secrets.RELEASES_PAT }}
+          RELEASES_URL: https://github.com/a1computerinc2026/cocobot-releases.git
+        run: |
+          set -euo pipefail
+          if [ -z "$RELEASES_TOKEN" ]; then
+            echo "::error::RELEASES_PAT is required to publish announcements to cocobot-releases"
+            exit 1
+          fi
+          auth_url="https://x-access-token:${RELEASES_TOKEN}@${RELEASES_URL#https://}"
+          git clone "$auth_url" releases
+          git -C releases checkout -B main
+          mkdir -p releases/announcements
+          if command -v rsync >/dev/null 2>&1; then
+            rsync -a --delete announcements/ releases/announcements/
+          else
+            rm -rf releases/announcements
+            cp -r announcements releases/announcements
+          fi
+          git -C releases config user.name "github-actions[bot]"
+          git -C releases config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git -C releases add -A
+          if git -C releases diff --cached --quiet; then
+            echo "announcements already up to date on cocobot-releases."
+          else
+            git -C releases commit -m "announcements: sync from CocoBot main"
+            git -C releases push origin HEAD:main
+            echo "announcements published to cocobot-releases."
+          fi

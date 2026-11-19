@@ -104,10 +104,10 @@ it("asks for the code first, with email sign-in as a link below, and says how to
 
 it("a team's Cloud whose session ended offers the way back through CocoBot Cloud, as the signed-in session told this browser, and only to an https page", () => {
   const team = { environmentId: "e", label: "Acme", platform: "linux", version: "1", capabilities: { remoteSessions: true as const, cloudHome: true as const, cloudTeam: true as const } } as unknown as EnvironmentDescriptor;
-  expect(teamPage(team, "https://cloud.cocobot.com/cloud/team/t1")).toBe("https://cloud.cocobot.com/cloud/team/t1");
+  expect(teamPage(team, "https://cloud.cocobot.ss2.in/cloud/team/t1")).toBe("https://cloud.cocobot.ss2.in/cloud/team/t1");
   expect(teamPage(team, null), "never told before sign-in").toBeNull();
   for (const bad of ["javascript:alert(1)", "http://evil.example/cloud", "https://u:p@cloud.example/x", "https://cloud.example/x#signin=1", "nope"]) expect(teamPage(team, bad)).toBeNull();
-  expect(teamPage({ ...team, capabilities: { remoteSessions: true, cloudHome: true } } as unknown as EnvironmentDescriptor, "https://cloud.cocobot.com/cloud/team/t1"), "a My Cloud has no team page").toBeNull();
+  expect(teamPage({ ...team, capabilities: { remoteSessions: true, cloudHome: true } } as unknown as EnvironmentDescriptor, "https://cloud.cocobot.ss2.in/cloud/team/t1"), "a My Cloud has no team page").toBeNull();
   expect(en["pair.team.open"].replace("{team}", "Acme")).toBe("Open Acme with CocoBot Cloud");
 });
 

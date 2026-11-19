@@ -34,7 +34,7 @@ const DUPLICATE_INSTALLATION_ID = "33333333-3333-4333-8333-333333333333";
 const ACCOUNT_TOKEN = `signed.${"a".repeat(80)}`;
 const INSTALLATION_CREDENTIAL = `omb_install_${"b".repeat(22)}.${"c".repeat(43)}`;
 const CONNECTOR_TOKEN = `eyJ${"d".repeat(100)}`;
-const ENDPOINT = "https://c-opaque.cocobot.com";
+const ENDPOINT = "https://c-opaque.cocobot.ss2.in";
 
 function credentialStore(initial = {}) {
   let document = structuredClone(initial);
@@ -115,7 +115,7 @@ function signedCredentials(overrides = {}) {
 describe("Companion account service", () => {
   it("uses the packaged hosted default and only explicit safe development origins", () => {
     expect(resolveCompanionControlPlaneURL({ isPackaged: true, environment: {} })).toBe(
-      "https://accounts.cocobot.com",
+      "https://accounts.cocobot.ss2.in",
     );
     expect(resolveCompanionControlPlaneURL({
       isPackaged: false,
@@ -123,11 +123,11 @@ describe("Companion account service", () => {
     })).toBe("http://127.0.0.1:8787");
     expect(resolveCompanionControlPlaneURL({
       isPackaged: true,
-      environment: { OMB_CONTROL_PLANE_URL: "http://accounts.cocobot.com" },
+      environment: { OMB_CONTROL_PLANE_URL: "http://accounts.cocobot.ss2.in" },
     })).toBe("");
     expect(resolveCompanionControlPlaneURL({
       isPackaged: true,
-      environment: { OMB_CONTROL_PLANE_URL: new String("https://accounts.cocobot.com") },
+      environment: { OMB_CONTROL_PLANE_URL: new String("https://accounts.cocobot.ss2.in") },
     })).toBe("");
     expect(resolveCompanionControlPlaneURL({ isPackaged: false, environment: {} })).toBe("");
   });

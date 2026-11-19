@@ -106,7 +106,7 @@ describe("Announcements", () => {
   });
 
   it("on a Team Cloud: its admin's popup invites, a member's only tells; a member's list is Teams alone", async () => {
-    f.state = { config: { team: { id: "team-acme", name: "Acme", cloudPage: "https://admin.cocobot.com/cloud" } } };
+    f.state = { config: { team: { id: "team-acme", name: "Acme", cloudPage: "https://admin.cocobot.ss2.in/cloud" } } };
     f.found = found({ ...browser, team: true, canSave: false, sponsors: false }, { viewer: { hosted: true, canSave: false, teamRole: "member" } });
     await open();
     expect(rows().map(row => row.dataset.announcementItem)).toEqual([card.id, TEAMS_NOTICE]);

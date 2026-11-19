@@ -2113,8 +2113,8 @@
      "k": "BJiFmi3bzpQUayMJErl6eqt24mUOvHEUR6uzutPTHfundIgyZxs3bSzUMydGOfgbWdwQshIyzzlMWqxMkNHnmd0",
      "h": "lz81isB3BuNV6rHgYgG3Wg",
      "r": [
-      "relay1.cocobot.com",
-      "relay2.cocobot.com"
+      "relay1.cocobot.ss2.in",
+      "relay2.cocobot.ss2.in"
      ]
     }
    },
@@ -2136,10 +2136,10 @@
      "k": "BJiFmi3bzpQUayMJErl6eqt24mUOvHEUR6uzutPTHfundIgyZxs3bSzUMydGOfgbWdwQshIyzzlMWqxMkNHnmd0",
      "h": "lz81isB3BuNV6rHgYgG3Wg",
      "r": [
-      "relay1.cocobot.com",
-      "relay2.cocobot.com",
-      "relay3.cocobot.com",
-      "relay99.cocobot.com"
+      "relay1.cocobot.ss2.in",
+      "relay2.cocobot.ss2.in",
+      "relay3.cocobot.ss2.in",
+      "relay99.cocobot.ss2.in"
      ]
     }
    },
@@ -2152,8 +2152,8 @@
      "k": "BJiFmi3bzpQUayMJErl6eqt24mUOvHEUR6uzutPTHfundIgyZxs3bSzUMydGOfgbWdwQshIyzzlMWqxMkNHnmd0",
      "h": "lz81isB3BuNV6rHgYgG3Wg",
      "r": [
-      "relay1.cocobot.com",
-      "relay2.cocobot.com"
+      "relay1.cocobot.ss2.in",
+      "relay2.cocobot.ss2.in"
      ]
     }
    },
@@ -2166,8 +2166,8 @@
      "k": "BJiFmi3bzpQUayMJErl6eqt24mUOvHEUR6uzutPTHfundIgyZxs3bSzUMydGOfgbWdwQshIyzzlMWqxMkNHnmd0",
      "h": "lz81isB3BuNV6rHgYgG3Wg",
      "r": [
-      "relay1.cocobot.com",
-      "relay2.cocobot.com"
+      "relay1.cocobot.ss2.in",
+      "relay2.cocobot.ss2.in"
      ]
     }
    },
@@ -2190,8 +2190,8 @@
      "k": "BJiFmi3bzpQUayMJErl6eqt24mUOvHEUR6uzutPTHfundIgyZxs3bSzUMydGOfgbWdwQshIyzzlMWqxMkNHnmd0",
      "h": "lz81isB3BuNV6rHgYgG3Wg",
      "r": [
-      "relay1.cocobot.com",
-      "relay2.cocobot.com"
+      "relay1.cocobot.ss2.in",
+      "relay2.cocobot.ss2.in"
      ],
      "routes": "any"
     }
@@ -2215,8 +2215,8 @@
      "k": "BJiFmi3bzpQUayMJErl6eqt24mUOvHEUR6uzutPTHfundIgyZxs3bSzUMydGOfgbWdwQshIyzzlMWqxMkNHnmd0",
      "h": "lz81isB3BuNV6rHgYgG3Wg",
      "r": [
-      "relay1.cocobot.com",
-      "relay2.cocobot.com"
+      "relay1.cocobot.ss2.in",
+      "relay2.cocobot.ss2.in"
      ],
      "routes": "local"
     }

@@ -114,7 +114,7 @@ describe("the bot limit popup", () => {
     expect(dialog()!.querySelector("p")?.textContent).toBe("To create more, upgrade this Cloud on its Plan page. Every bot you have stays as it is.");
     expect(buttons()).toEqual(["Open the Plan page", "Not now", "Close"]);
     await press("Open the Plan page");
-    expect(openExternalLink).toHaveBeenCalledExactlyOnceWith("https://cloud.cocobot.com/cloud");
+    expect(openExternalLink).toHaveBeenCalledExactlyOnceWith("https://cloud.cocobot.ss2.in/cloud");
   });
 
   it("on a person's other Cloud, which only reads its plan, opens its Plan page and closes", async () => {

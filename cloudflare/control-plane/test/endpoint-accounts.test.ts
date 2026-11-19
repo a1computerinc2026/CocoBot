@@ -69,14 +69,14 @@ describe("endpoint account configuration", () => {
   });
 
   it("deploys every account's limits at its real Cloudflare quotas", () => {
-    // cocobot.com and cocobot.si are both Pro zones (3,500 DNS records;
+    // cocobot.ss2.in and cocobot.si are both Pro zones (3,500 DNS records;
     // cocobot.si was Free, 200, until Oct 21). Both accounts allow 1,000 tunnels.
     const production = JSON.parse(env.TEST_PRODUCTION_ENDPOINT_ACCOUNTS) as unknown[];
     const deployed = readConfig(withAccounts(production)).endpointAccounts;
     expect(deployed.map(({ companionHostSuffix, dnsRecordLimit, tunnelLimit }) => (
       { companionHostSuffix, dnsRecordLimit, tunnelLimit }
     ))).toEqual([
-      { companionHostSuffix: "cocobot.com", dnsRecordLimit: 3500, tunnelLimit: 1000 },
+      { companionHostSuffix: "cocobot.ss2.in", dnsRecordLimit: 3500, tunnelLimit: 1000 },
       { companionHostSuffix: "cocobot.si", dnsRecordLimit: 3500, tunnelLimit: 1000 },
     ]);
   });
@@ -154,7 +154,7 @@ describe("endpoint account configuration", () => {
 const PRIMARY: EndpointAccount = {
   accountId: "0c92969a82eb9e173b013a7e7a02333d",
   apiToken: "primary-token-for-pure-tests-only",
-  companionHostSuffix: "cocobot.com",
+  companionHostSuffix: "cocobot.ss2.in",
   dnsRecordLimit: 1000,
   minAppVersion: null,
   newEndpoints: true,
@@ -214,7 +214,7 @@ describe("endpoint account rules", () => {
   });
 
   it("never chooses an account with no free tunnel or DNS record while another has both", () => {
-    // Production on 2026-10-20: cocobot.com (a Pro zone) had 26 tunnels
+    // Production on 2026-10-20: cocobot.ss2.in (a Pro zone) had 26 tunnels
     // free and 1,878 dormant endpoints; cocobot.si (a Free zone) 770 tunnels
     // free, all 200 DNS records used, and 207 dormant endpoints.
     const primary = { ...PRIMARY, dnsRecordLimit: 3500 };
@@ -288,9 +288,9 @@ describe("endpoint account rules", () => {
     const config = accounts(PRIMARY, SECOND);
     const label = `c-${"0123456789abcdef".repeat(2)}`;
     expect(endpointAccountFor(config, { hostname: `${label}.cocobot.si`, provider_account: SECOND.accountId })).toBe(SECOND);
-    expect(endpointAccountFor(config, { hostname: `${label}.cocobot.com`, provider_account: PRIMARY.accountId })).toBe(PRIMARY);
+    expect(endpointAccountFor(config, { hostname: `${label}.cocobot.ss2.in`, provider_account: PRIMARY.accountId })).toBe(PRIMARY);
     for (const [providerAccount, hostname] of [
-      [SECOND.accountId, `${label}.cocobot.com`],
+      [SECOND.accountId, `${label}.cocobot.ss2.in`],
       [PRIMARY.accountId, `${label}.cocobot.si`],
       ["9".repeat(32), `${label}.cocobot.si`],
       [SECOND.accountId, `www.${label}.cocobot.si`],
@@ -308,9 +308,9 @@ describe("endpoint account rules", () => {
     const label = (index: number) => `c-${index.toString(16).padStart(32, "0")}`;
     const cases: Array<[string, string]> = [
       [SECOND.accountId, `${label(1)}.cocobot.si`],
-      [PRIMARY.accountId, `${label(2)}.cocobot.com`],
+      [PRIMARY.accountId, `${label(2)}.cocobot.ss2.in`],
       [SECOND.accountId, `c-${"0123456789abcdef".repeat(2)}.cocobot.si`],
-      [SECOND.accountId, `${label(3)}.cocobot.com`],
+      [SECOND.accountId, `${label(3)}.cocobot.ss2.in`],
       [PRIMARY.accountId, `${label(4)}.cocobot.si`],
       ["9".repeat(32), `${label(5)}.cocobot.si`],
       [SECOND.accountId, `www.${label(6)}.cocobot.si`],

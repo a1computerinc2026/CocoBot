@@ -4,7 +4,7 @@
 
 **The open-source Grok Bot alternative: your own team of AI bots, in a chat app.**
 
-[**cocobot.com**](https://www.cocobot.com) &nbsp;·&nbsp; [Download](https://www.cocobot.com/download) &nbsp;·&nbsp; [Open source Grok Bot alternative, compared](https://www.cocobot.com/blog/grok-bot-vs-cocobot)
+[**cocobot.ss2.in**](https://www.cocobot.ss2.in) &nbsp;·&nbsp; [Download](https://www.cocobot.ss2.in/download) &nbsp;·&nbsp; [Open source Grok Bot alternative, compared](https://www.cocobot.ss2.in/blog/grok-bot-vs-cocobot)
 
 <sub>CocoBot is an open-source Grok Bot alternative: an independent project inspired by **Grok Bot**, and the open-source alternative to **Meta Muse**, **OpenAI dots** and **Cue by Manus** — bring-your-own-agent, local-first, on the models you already have. Also known as **CocoBot**; formerly **OpenGrokBot**. Not affiliated with xAI, Meta, OpenAI or Manus.</sub>
 
@@ -107,14 +107,14 @@ apps, running on your machine under Apache 2.0. If you searched for an *open Mus
 
 | Looking for | What it is | How CocoBot differs | Read more |
 | --- | --- | --- | --- |
-| **Open source Grok Bot** | xAI's roster of bots on one shared cloud computer, Grok only, from a SuperGrok or Cursor plan | Same roster shape; any model per bot; your own machine; approval cards | [Grok Bot vs CocoBot](https://www.cocobot.com/blog/grok-bot-vs-cocobot) |
-| **Open Muse** | Meta's single personal agent in a Meta cloud VM, US and Canada only | A team instead of one agent; runs anywhere; data in `~/.cocobot` | [Meta Muse alternative](https://www.cocobot.com/blog/open-source-alternative-to-meta-muse) |
-| **Open dots** | OpenAI's always-on agent inside ChatGPT, GPT only, Pro and Business Premium plans | Several agents; your Claude, ChatGPT or Grok login; no plan required | [OpenAI dots alternative](https://www.cocobot.com/blog/openai-dots-alternative) |
-| **Open Cue** | Manus's invite-only agents with their own phone, email and wallet | No invite; OAuth instead of passwords; open source | [Cue by Manus alternative](https://www.cocobot.com/blog/open-source-alternative-to-cue-by-manus) |
-| **Open Instinct** | Spear Street's invite-only agent that holds your passwords on a cloud computer | Ask for approval when you want it; signs in over OAuth; your machine | [Instinct AI alternative](https://www.cocobot.com/blog/instinct-ai-alternative) |
+| **Open source Grok Bot** | xAI's roster of bots on one shared cloud computer, Grok only, from a SuperGrok or Cursor plan | Same roster shape; any model per bot; your own machine; approval cards | [Grok Bot vs CocoBot](https://www.cocobot.ss2.in/blog/grok-bot-vs-cocobot) |
+| **Open Muse** | Meta's single personal agent in a Meta cloud VM, US and Canada only | A team instead of one agent; runs anywhere; data in `~/.cocobot` | [Meta Muse alternative](https://www.cocobot.ss2.in/blog/open-source-alternative-to-meta-muse) |
+| **Open dots** | OpenAI's always-on agent inside ChatGPT, GPT only, Pro and Business Premium plans | Several agents; your Claude, ChatGPT or Grok login; no plan required | [OpenAI dots alternative](https://www.cocobot.ss2.in/blog/openai-dots-alternative) |
+| **Open Cue** | Manus's invite-only agents with their own phone, email and wallet | No invite; OAuth instead of passwords; open source | [Cue by Manus alternative](https://www.cocobot.ss2.in/blog/open-source-alternative-to-cue-by-manus) |
+| **Open Instinct** | Spear Street's invite-only agent that holds your passwords on a cloud computer | Ask for approval when you want it; signs in over OAuth; your machine | [Instinct AI alternative](https://www.cocobot.ss2.in/blog/instinct-ai-alternative) |
 
-All five side by side: [Muse vs Grok Bot vs Dots vs Cue](https://www.cocobot.com/blog/muse-vs-grok-bot-vs-dots-vs-cue),
-and a decision guide in five questions: [Which AI agent should I use?](https://www.cocobot.com/blog/which-ai-agent-should-i-use)
+All five side by side: [Muse vs Grok Bot vs Dots vs Cue](https://www.cocobot.ss2.in/blog/muse-vs-grok-bot-vs-dots-vs-cue),
+and a decision guide in five questions: [Which AI agent should I use?](https://www.cocobot.ss2.in/blog/which-ai-agent-should-i-use)
 
 ## Features
 
