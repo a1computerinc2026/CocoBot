@@ -2,7 +2,7 @@
 
 Date: 2026-11-01 · Status: awaiting review · Scope: server, desktop (macOS, Windows), iPhone, Android
 
-Repos: server and desktop in milind-soni/CocoBot; phone apps in SupaCoco/cocobot-mobile (separate PR).
+Repos: server and desktop in a1computerinc2026/CocoBot; phone apps in SupaCoco/cocobot-mobile (separate PR).
 
 Mockup (approved): [assets/2026-11-01-mcp-in-chat/mockup.html](assets/2026-11-01-mcp-in-chat/mockup.html), four tabs with working buttons.
 

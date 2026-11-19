@@ -60,8 +60,8 @@ writeFileSync(
       },
       files: ["cli.js", "dist-server", "dist", "skills", "enterprise", "LICENSE", "README.md"],
       engines: { node: ">=24" },
-      repository: { type: "git", url: "https://github.com/milind-soni/CocoBot.git" },
-      homepage: "https://github.com/milind-soni/CocoBot#readme",
+      repository: { type: "git", url: "https://github.com/a1computerinc2026/CocoBot.git" },
+      homepage: "https://github.com/a1computerinc2026/CocoBot#readme",
       keywords: ["cocobot", "agents", "self-hosted", "server"],
     },
     null,
@@ -158,9 +158,9 @@ cocobot run "Room Lead" "Rehearse the launch of https://example.com" --export ./
 cocobot help run       # every verb: doctor, run, wait, send, export, events, team, engine, connect, mcp
 \`\`\`
 
-[Setup guide](https://github.com/milind-soni/CocoBot/blob/main/docs/cli-onboarding.md)
-· [Scripts and CI](https://github.com/milind-soni/CocoBot/blob/main/docs/headless-cli.md)
-· [Hosting guide](https://github.com/milind-soni/CocoBot/blob/main/docs/self-hosting.md)
+[Setup guide](https://github.com/a1computerinc2026/CocoBot/blob/main/docs/cli-onboarding.md)
+· [Scripts and CI](https://github.com/a1computerinc2026/CocoBot/blob/main/docs/headless-cli.md)
+· [Hosting guide](https://github.com/a1computerinc2026/CocoBot/blob/main/docs/self-hosting.md)
 `,
 );
 console.log(`npm package assembled at ${out} (cocobot@${app.version})`);

@@ -11,10 +11,10 @@ From a blank Linux server to CocoBot running on it around the clock, reachable f
 For a fresh Ubuntu 22.04 or 24.04 server (x86-64, at least 2 CPUs, 4 GB of memory and 20 GB of free disk) and a domain name whose A record already points at it:
 
 ```sh
-curl -fsSL https://raw.githubusercontent.com/milind-soni/CocoBot/main/deploy/install.sh | sudo sh -s -- --domain coco.example.com
+curl -fsSL https://raw.githubusercontent.com/a1computerinc2026/CocoBot/main/deploy/install.sh | sudo sh -s -- --domain coco.example.com
 ```
 
-The installer ([`deploy/install.sh`](https://github.com/milind-soni/CocoBot/blob/main/deploy/install.sh)) does path B below for you and ends with CocoBot answering at `https://coco.example.com`.
+The installer ([`deploy/install.sh`](https://github.com/a1computerinc2026/CocoBot/blob/main/deploy/install.sh)) does path B below for you and ends with CocoBot answering at `https://coco.example.com`.
 
 **It checks the server first, and changes nothing while it checks.** Each check that fails prints one sentence saying what to fix, and nothing is installed until all pass:
 
@@ -36,7 +36,7 @@ The installer ([`deploy/install.sh`](https://github.com/milind-soni/CocoBot/blob
 To run only the checks, add `--check`:
 
 ```sh
-curl -fsSL https://raw.githubusercontent.com/milind-soni/CocoBot/main/deploy/install.sh | sudo sh -s -- --check --domain coco.example.com
+curl -fsSL https://raw.githubusercontent.com/a1computerinc2026/CocoBot/main/deploy/install.sh | sudo sh -s -- --check --domain coco.example.com
 ```
 
 If Docker is missing, the installer asks before installing it with Docker's official script (`get.docker.com`); `--install-docker` says yes ahead of time. It installs nothing else on the server.
@@ -184,7 +184,7 @@ The [installer](#quick-start-one-command-on-your-own-domain) does these steps fo
 3. **Get the deploy files and set the name:**
 
    ```sh
-   git clone https://github.com/milind-soni/CocoBot && cd CocoBot/deploy
+   git clone https://github.com/a1computerinc2026/CocoBot && cd CocoBot/deploy
    cp .env.example .env
    nano .env                # DOMAIN=coco.example.com ; ENGINES=@anthropic-ai/claude-code @openai/codex
    ```
@@ -342,7 +342,7 @@ same release without an npm install prompt or an implicit upgrade.
 
 A self-hosted server follows the **stable** channel: a released version that
 CocoBot's own Clouds have run for 48 hours first. The image tag `stable` and
-[`stable.json`](https://raw.githubusercontent.com/milind-soni/CocoBot/channels/stable.json)
+[`stable.json`](https://raw.githubusercontent.com/a1computerinc2026/CocoBot/channels/stable.json)
 name it. The tag `latest` follows every change on `main`; it is for trying
 things out, not for a server you rely on. **Check for updates** in the app
 compares your server with the stable version. To hear of every release as soon
@@ -472,7 +472,7 @@ has no checkout, with its `compose.yaml`, `.env` and `data/` in one folder such
 as `/opt/cocobot`, runs the same script on that folder:
 
 ```sh
-curl -fsSL https://raw.githubusercontent.com/milind-soni/CocoBot/main/deploy/update.sh -o update.sh
+curl -fsSL https://raw.githubusercontent.com/a1computerinc2026/CocoBot/main/deploy/update.sh -o update.sh
 sudo bash update.sh --dir /opt/cocobot
 ```
 
@@ -499,7 +499,7 @@ every file's owner and mode either way. The script then:
    changed. The copy from the update before is removed only after this one
    has matched. The server is down from here until step 4; how long depends
    on how much data there is.
-3. Writes the image into `.env` (`OMB_IMAGE=ghcr.io/milind-soni/cocobot@sha256:…`)
+3. Writes the image into `.env` (`OMB_IMAGE=ghcr.io/a1computerinc2026/cocobot@sha256:…`)
    and starts it. An install the installer made while Caddy still shared the
    server's network gets the installer's current `compose.yaml` and
    `Caddyfile` here, as a run of the installer would write them (the rollback
@@ -589,7 +589,7 @@ from **Settings → Engines** live on the data volume and survive either way.
 There is no one-command updater for an npm install yet. Do what the script
 does: copy the data first, install one named version, check it, and keep the
 way back. Take the stable version number from
-[`stable.json`](https://raw.githubusercontent.com/milind-soni/CocoBot/channels/stable.json)
+[`stable.json`](https://raw.githubusercontent.com/a1computerinc2026/CocoBot/channels/stable.json)
 (`"version"`), and note the one you run now (`cocobot --version`). From
 the administrator shell, replacing `X.Y.Z`:
 

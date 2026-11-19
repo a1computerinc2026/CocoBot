@@ -42,7 +42,7 @@ their interpreter (`python3 scripts/report.py`). Older apps ignore the extra fil
 ## Publishing
 
 **Publish** sends the folder to the CocoBot Admin, which opens a pull request on the community repository
-(`milind-soni/cocobot-teams`); nobody needs a GitHub account. The card then has **Copy link**, a GitHub folder link
+(`a1computerinc2026/cocobot-teams`); nobody needs a GitHub account. The card then has **Copy link**, a GitHub folder link
 that **Import…** accepts, and **View on GitHub**. Publishing needs a CocoBot sign-in; without one, the card offers
 **Save folder…** and **Upload on GitHub**, the repository's own upload page. The community repository takes each skill's
 SKILL.md alone for now, so a published template leaves its scripts out; the other targets keep them.

@@ -3,14 +3,14 @@
   "private": true,
   "version": "0.1.169",
   "description": "A local-first chat app for running a team of AI agents.",
-  "homepage": "https://github.com/milind-soni/CocoBot",
+  "homepage": "https://github.com/a1computerinc2026/CocoBot",
   "repository": {
     "type": "git",
-    "url": "https://github.com/milind-soni/CocoBot.git"
+    "url": "https://github.com/a1computerinc2026/CocoBot.git"
   },
   "author": {
     "name": "Milind Soni",
-    "email": "46266943+milind-soni@users.noreply.github.com"
+    "email": "46266943+a1computerinc2026@users.noreply.github.com"
   },
   "license": "Apache-2.0",
   "desktopName": "com.cocobot.app.desktop",

@@ -10,7 +10,7 @@ reruns and recovery. It
 builds macOS (arm64 + x64, signed, notarized, stapled), Windows, and Ubuntu
 from a single pinned commit, verifies every artifact the way a user would
 receive it, and assembles the canonical draft in
-[CocoBot releases](https://github.com/milind-soni/CocoBot/releases).
+[CocoBot releases](https://github.com/a1computerinc2026/CocoBot/releases).
 The exact same assets are also staged in the public legacy releases repo so
 installed builds from 0.1.46 and earlier can update across the repository
 migration.
@@ -74,8 +74,8 @@ The workflow builds nothing. It:
    and reads its digest and the Cloud home image's;
 3. refuses to move stable back to an older version unless `allow_older` is
    ticked;
-4. moves the `stable` tag of `ghcr.io/milind-soni/cocobot` and of
-   `ghcr.io/milind-soni/cocobot-cloud-home` to those digests;
+4. moves the `stable` tag of `ghcr.io/a1computerinc2026/cocobot` and of
+   `ghcr.io/a1computerinc2026/cocobot-cloud-home` to those digests;
 5. commits `stable.json` (version, both images by digest, and every version
    that was stable in the last 90 days) to the `channels` branch. When that
    fails after the tags moved, the tags are put back to the digests the
@@ -87,7 +87,7 @@ it stops the run, so a network error never skips the move-back check or drops
 the history.
 
 Servers read
-`https://raw.githubusercontent.com/milind-soni/CocoBot/channels/stable.json`:
+`https://raw.githubusercontent.com/a1computerinc2026/CocoBot/channels/stable.json`:
 the update check (`server/update-check.ts`) for the version, and
 `deploy/update.sh` for the image to pull. `latest` still follows `main` and is
 never moved by this workflow. Running it again with the same version changes
@@ -125,8 +125,8 @@ to one side's steps belongs in the other too.
 ## Updater migration invariant
 
 `app-update.yml` is baked into every packaged desktop app. Builds through
-0.1.46 point to `milind-soni/cocobot-releases`; newer builds point to
-`milind-soni/CocoBot`. For that reason:
+0.1.46 point to `a1computerinc2026/cocobot-releases`; newer builds point to
+`a1computerinc2026/CocoBot`. For that reason:
 
 1. Every new release is published byte-for-byte to both repositories during
    the bridge period.

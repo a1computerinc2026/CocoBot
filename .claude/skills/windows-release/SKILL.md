@@ -6,7 +6,7 @@ description: Build and verify the Windows desktop build (NSIS installer + latest
 # Windows release
 
 Ships `CocoBot-<version>-setup.exe` and its update feed to
-[milind-soni/CocoBot](https://github.com/milind-soni/CocoBot/releases).
+[a1computerinc2026/CocoBot](https://github.com/a1computerinc2026/CocoBot/releases).
 The unified release workflow mirrors the same bytes to the legacy releases
 repository for apps installed before the updater migration.
 
@@ -61,7 +61,7 @@ Get-Content release\win-unpacked\resources\app-update.yml  # feed config
 - Missing `server/index.js` → `utilityProcess.fork` fails → the 🐭 "Couldn't start
   the bot server" page.
 - Missing `ui/index.html` → server has nothing to serve → black window.
-- `app-update.yml` must point at `milind-soni/CocoBot` and, while the
+- `app-update.yml` must point at `a1computerinc2026/CocoBot` and, while the
   build is unsigned, **must not contain `publisherName`** — electron-updater would
   reject every update as untrusted.
 
@@ -82,7 +82,7 @@ carries both platforms.
 
 ```powershell
 Copy-Item release/CocoBot-<version>-setup.exe release/CocoBot-setup.exe
-gh release upload v<version> --repo milind-soni/CocoBot `
+gh release upload v<version> --repo a1computerinc2026/CocoBot `
   release/CocoBot-<version>-setup.exe `
   release/CocoBot-setup.exe `
   release/CocoBot-<version>-setup.exe.blockmap `
@@ -92,7 +92,7 @@ gh release upload v<version> --repo milind-soni/CocoBot `
 Prefer the repository's **Release** workflow, which builds all platforms from
 one pinned commit and mirrors the complete, byte-identical asset set safely.
 If this emergency manual path is used, the same four files must also be attached
-to the matching draft in `milind-soni/cocobot-releases`; never replace the
+to the matching draft in `a1computerinc2026/cocobot-releases`; never replace the
 bytes of an already-published asset.
 
 Both names are required, for different consumers:

@@ -57,7 +57,7 @@ function response(value: unknown, status = 200): Response {
 describe("team library", () => {
   it("validates catalog paths and adds the trusted repository URL", () => {
     const parsed = parseTeamCatalog(catalog);
-    expect(parsed.repositoryUrl).toBe("https://github.com/milind-soni/cocobot-teams");
+    expect(parsed.repositoryUrl).toBe("https://github.com/a1computerinc2026/cocobot-teams");
     expect(parsed.teams[0]).toMatchObject({ slug: "engineering", members: 1 });
 
     const unsafe = structuredClone(catalog);

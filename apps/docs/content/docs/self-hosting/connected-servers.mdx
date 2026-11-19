@@ -5,16 +5,16 @@ icon: ShieldCheck
 ---
 
 <Callout title="Connected mode is not on sale yet">
-  A standalone server, the default, has no connector and nothing on this page applies to it. This page describes the connector's code as it is in the [public repository](https://github.com/milind-soni/CocoBot/tree/main/connector), so you can check every line against it. No released connector or server contains this mode yet. Items marked **planned** do not exist yet.
+  A standalone server, the default, has no connector and nothing on this page applies to it. This page describes the connector's code as it is in the [public repository](https://github.com/a1computerinc2026/CocoBot/tree/main/connector), so you can check every line against it. No released connector or server contains this mode yet. Items marked **planned** do not exist yet.
 </Callout>
 
 A connected server is a CocoBot server you installed and run yourself, which CocoBot's control plane (the Admin) may start, stop, update and back up for you, and whose health it watches. The part that does this on your server is the **connector**. On a server you run it works in **customer-run mode**, and that mode is what this page describes.
 
-The whole list of what the Admin may run, ask and learn in this mode is one file: [`connector/src/customer-run.ts`](https://github.com/milind-soni/CocoBot/blob/main/connector/src/customer-run.ts). The connector enforces it on your server. It does not depend on the Admin behaving.
+The whole list of what the Admin may run, ask and learn in this mode is one file: [`connector/src/customer-run.ts`](https://github.com/a1computerinc2026/CocoBot/blob/main/connector/src/customer-run.ts). The connector enforces it on your server. It does not depend on the Admin behaving.
 
 ## The connector
 
-- One container, `cocobot-connector`, from `ghcr.io/milind-soni/cocobot-connector`, pinned by digest.
+- One container, `cocobot-connector`, from `ghcr.io/a1computerinc2026/cocobot-connector`, pinned by digest.
 - It only calls out: one HTTPS request to enrol, then one WebSocket to the Admin. It opens no port.
 - It makes its own Ed25519 key at enrolment. The private key stays on your server. It pins the Admin's signing keys.
 - It runs with every Linux capability dropped, a read-only file system and no new privileges.
@@ -56,7 +56,7 @@ Two jobs exist on your server and are refused when CocoBot sends them. Root on t
 | `restore` | It puts older data back over what is there, after a safety copy |
 
 ```sh
-docker exec cocobot-connector cocobot-connector job self-update '{"image":"ghcr.io/milind-soni/cocobot-connector@sha256:…"}'
+docker exec cocobot-connector cocobot-connector job self-update '{"image":"ghcr.io/a1computerinc2026/cocobot-connector@sha256:…"}'
 docker exec cocobot-connector cocobot-connector job restore '{"backupId":"20261028-104512-3fa9"}'
 ```
 

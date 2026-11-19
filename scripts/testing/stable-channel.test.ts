@@ -8,9 +8,9 @@ import { checkIndex, checkRelease, SOAK_MS, stableRecord, stableVersion } from "
 const NOW = Date.parse("2026-11-12T12:00:00Z");
 const release = (patch: Record<string, unknown> = {}) => ({
   tagName: "v0.1.151", isDraft: false, isPrerelease: false, publishedAt: "2026-11-09T22:56:49Z",
-  url: "https://github.com/milind-soni/CocoBot/releases/tag/v0.1.151", ...patch,
+  url: "https://github.com/a1computerinc2026/CocoBot/releases/tag/v0.1.151", ...patch,
 });
-const pinned = (name: string, letter: string) => `ghcr.io/milind-soni/${name}@sha256:${letter.repeat(64)}`;
+const pinned = (name: string, letter: string) => `ghcr.io/a1computerinc2026/${name}@sha256:${letter.repeat(64)}`;
 const IMAGE = pinned("cocobot", "a");
 const HOME = pinned("cocobot-cloud-home", "b");
 const index = (...platforms: string[]) => ({
@@ -49,7 +49,7 @@ describe("the stable channel", () => {
       releaseUrl: release().url, releasedAt: release().publishedAt, promotedAt: "2026-11-12T12:00:00.000Z",
       history: [{ version: "0.1.151", promotedAt: "2026-11-12T12:00:00.000Z" }],
     });
-    expect(() => stableRecord({ version: "0.1.151", image: "ghcr.io/milind-soni/cocobot:v0.1.151", cloudHomeImage: HOME, release: release(), current: null, now: NOW })).toThrow("is not pinned by digest");
+    expect(() => stableRecord({ version: "0.1.151", image: "ghcr.io/a1computerinc2026/cocobot:v0.1.151", cloudHomeImage: HOME, release: release(), current: null, now: NOW })).toThrow("is not pinned by digest");
     if (process.platform === "win32") return;
     // Three promotions: the history then names older versions after the current one, as it does from the second on.
     let next = record;

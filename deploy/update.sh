@@ -37,10 +37,10 @@ umask 022
 # update half-way. Output to a terminal that has gone is lost; .update/update.log keeps it.
 trap '' HUP PIPE
 
-REPO="ghcr.io/milind-soni/cocobot"
-PINNED="^ghcr\.io/milind-soni/cocobot@sha256:[0-9a-f]{64}$"
-STABLE_URL=${OMB_STABLE_URL:-https://raw.githubusercontent.com/milind-soni/CocoBot/channels/stable.json}
-NEWEST_URL=${OMB_NEWEST_URL:-https://api.github.com/repos/milind-soni/CocoBot/releases/latest}
+REPO="ghcr.io/a1computerinc2026/cocobot"
+PINNED="^ghcr\.io/a1computerinc2026/cocobot@sha256:[0-9a-f]{64}$"
+STABLE_URL=${OMB_STABLE_URL:-https://raw.githubusercontent.com/a1computerinc2026/CocoBot/channels/stable.json}
+NEWEST_URL=${OMB_NEWEST_URL:-https://api.github.com/repos/a1computerinc2026/CocoBot/releases/latest}
 SERVICE=${OMB_UPDATE_SERVICE:-omb}
 # A healthy server answers within seconds of starting; two minutes leaves room for a slow first start after an update,
 # and is how long the server is down before a version that never answers is rolled back. OMB_UPDATE_WAIT_S for more.

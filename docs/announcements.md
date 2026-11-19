@@ -7,7 +7,7 @@ change to it on `main` and every install that runs this version or later picks i
 ## How it works
 
 - **One file on `main`.** The app's server downloads
-  `https://raw.githubusercontent.com/milind-soni/CocoBot/main/announcements/announcements.json` when a page of the app
+  `https://raw.githubusercontent.com/a1computerinc2026/CocoBot/main/announcements/announcements.json` when a page of the app
   asks for the cards: at launch, then about hourly while the app is in use. Whoever can merge to `main` can publish a card;
   there is no other sign-in and no backend.
 - **The server fetches, the page decides.** The desktop app's own server, a CocoBot Cloud and a self-hosted server all

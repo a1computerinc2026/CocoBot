@@ -1,6 +1,6 @@
 # Per-bot tool selection for local models
 
-Design for [#2047](https://github.com/milind-soni/CocoBot/issues/2047).
+Design for [#2047](https://github.com/a1computerinc2026/CocoBot/issues/2047).
 
 ## Purpose and acceptance
 

@@ -15,7 +15,7 @@ protocols:
 # stranded on its installed version.
 publish:
   - provider: github
-    owner: milind-soni
+    owner: a1computerinc2026
     repo: CocoBot
 
 directories:
@@ -216,7 +216,7 @@ linux:
   executableName: cocobot
   synopsis: Your own team of AI bots, in a chat app
   description: A local-first chat app for running a team of AI agents.
-  maintainer: Milind Soni <46266943+milind-soni@users.noreply.github.com>
+  maintainer: Milind Soni <46266943+a1computerinc2026@users.noreply.github.com>
   vendor: CocoBot
   syncDesktopName: true
   # The reviewed x64 CLI runtime is staged before packaging and remains

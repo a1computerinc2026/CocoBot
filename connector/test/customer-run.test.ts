@@ -18,10 +18,10 @@ import { StateStore, type AgentRecord } from "../src/state.ts";
 import { FakeAdmin } from "./fake-admin.ts";
 import { FakeDocker } from "./fake-docker.ts";
 
-const digest = (letter: string) => `ghcr.io/milind-soni/cocobot@sha256:${letter.repeat(64)}`;
-const CLOUD_HOME = `ghcr.io/milind-soni/cocobot-cloud-home@sha256:${"c".repeat(64)}`;
-const CONNECTOR = `ghcr.io/milind-soni/cocobot-connector@sha256:${"1".repeat(64)}`;
-const RUNNING = "ghcr.io/milind-soni/cocobot:v0.1.151";
+const digest = (letter: string) => `ghcr.io/a1computerinc2026/cocobot@sha256:${letter.repeat(64)}`;
+const CLOUD_HOME = `ghcr.io/a1computerinc2026/cocobot-cloud-home@sha256:${"c".repeat(64)}`;
+const CONNECTOR = `ghcr.io/a1computerinc2026/cocobot-connector@sha256:${"1".repeat(64)}`;
+const RUNNING = "ghcr.io/a1computerinc2026/cocobot:v0.1.151";
 const NEXT = digest("b");
 const OLDER = digest("a");
 const UNNAMED = digest("d");
@@ -230,7 +230,7 @@ describe("a customer-run server: pausing remote management", () => {
 });
 
 describe("a customer-run server: what leaves it", () => {
-  const TOLD = /^(?:v?\d+\.\d+\.\d+|ghcr\.io\/milind-soni\/[a-z-]+[@:][\w.:-]+|Ubuntu 24\.04\.3 LTS|6\.8\.0-1021-azure|x86_64|28\.0\.4|customer-run|running|stopped|starting|updating|absent|[a-z]+|\d{8}-\d{6}-[0-9a-f]{4})$/;
+  const TOLD = /^(?:v?\d+\.\d+\.\d+|ghcr\.io\/a1computerinc2026\/[a-z-]+[@:][\w.:-]+|Ubuntu 24\.04\.3 LTS|6\.8\.0-1021-azure|x86_64|28\.0\.4|customer-run|running|stopped|starting|updating|absent|[a-z]+|\d{8}-\d{6}-[0-9a-f]{4})$/;
   const strings = (value: unknown, out: string[] = []): string[] => {
     if (typeof value === "string") out.push(value);
     else if (Array.isArray(value)) for (const item of value) strings(item, out);
@@ -399,7 +399,7 @@ describe("a customer-run server: the home its owner installed", () => {
 describe("a customer-run server: replacing the connector", () => {
   it("is refused, even for the server's own root, when the new image is older than the one running or names no version", async () => {
     const fixture = await server();
-    const [now, newer, old, unnamed] = ["1", "2", "3", "4"].map((letter) => `ghcr.io/milind-soni/cocobot-connector@sha256:${letter.repeat(64)}`);
+    const [now, newer, old, unnamed] = ["1", "2", "3", "4"].map((letter) => `ghcr.io/a1computerinc2026/cocobot-connector@sha256:${letter.repeat(64)}`);
     for (const [ref, version] of [[now, "v0.1.152"], [newer, "v0.1.153"], [old, "v0.1.140"], [unnamed, null]] as const) {
       fixture.docker.publish(ref!, version);
       await fixture.docker.pull(ref!);

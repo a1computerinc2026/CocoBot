@@ -1,4 +1,4 @@
-ARG BASE_IMAGE=ghcr.io/milind-soni/cocobot:latest
+ARG BASE_IMAGE=ghcr.io/a1computerinc2026/cocobot:latest
 FROM ${BASE_IMAGE}
 USER root
 ARG ENGINES="@anthropic-ai/claude-code @openai/codex"

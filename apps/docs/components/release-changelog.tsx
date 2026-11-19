@@ -2,13 +2,13 @@ import type { Components } from 'react-markdown';
 import ReactMarkdown from 'react-markdown';
 
 const RELEASE_REPOSITORIES = [
-  'milind-soni/CocoBot',
-  'milind-soni/cocobot-releases',
+  'a1computerinc2026/CocoBot',
+  'a1computerinc2026/cocobot-releases',
 ] as const;
 const RELEASES_PER_PAGE = 100;
 const MAX_RELEASE_PAGES = 10;
 const LEGACY_DRAFT_NOTES =
-  /^Draft assembled by the release workflow from milind-soni\/CocoBot@([0-9a-f]{40})\. Edit these notes, then publish\.\s*$/i;
+  /^Draft assembled by the release workflow from a1computerinc2026\/CocoBot@([0-9a-f]{40})\. Edit these notes, then publish\.\s*$/i;
 
 interface GitHubRelease {
   body: string | null;
@@ -64,7 +64,7 @@ function releaseNotes(release: GitHubRelease) {
   if (!legacyDraft) return body;
 
   const commit = legacyDraft[1];
-  return `This build predates curated release notes. [View its source commit (${commit.slice(0, 7)})](https://github.com/milind-soni/CocoBot/commit/${commit}).`;
+  return `This build predates curated release notes. [View its source commit (${commit.slice(0, 7)})](https://github.com/a1computerinc2026/CocoBot/commit/${commit}).`;
 }
 
 async function fetchPublishedReleases(repository: string): Promise<GitHubRelease[]> {
@@ -129,7 +129,7 @@ export async function ReleaseChangelog() {
     return (
       <p>
         The live release history is temporarily unavailable.{' '}
-        <a href="https://github.com/milind-soni/CocoBot/releases">Browse releases on GitHub</a>.
+        <a href="https://github.com/a1computerinc2026/CocoBot/releases">Browse releases on GitHub</a>.
       </p>
     );
   }

@@ -34,7 +34,7 @@ function host(stored: Array<{ path: string; content: string | Uint8Array }> | nu
     skillFiles: () => stored, picture: () => undefined, botFolder: (id) => join(botFolder, id),
     publisher: { ...publisher, submit: async (submission) => {
       submitted.push(submission);
-      return { ok: true, link: "https://github.com/milind-soni/cocobot-teams/tree/main/teams/reporter", prUrl: "https://github.com/milind-soni/cocobot-teams/pull/1" };
+      return { ok: true, link: "https://github.com/a1computerinc2026/cocobot-teams/tree/main/teams/reporter", prUrl: "https://github.com/a1computerinc2026/cocobot-teams/pull/1" };
     } },
     patch: () => {},
   });

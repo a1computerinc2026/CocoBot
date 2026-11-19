@@ -2,7 +2,7 @@
 # CocoBot on a server of your own: checks the server, then installs the CocoBot server with HTTPS on your domain.
 # Running it again repairs or updates the install and never touches your data.
 #
-#   curl -fsSL https://raw.githubusercontent.com/milind-soni/CocoBot/main/deploy/install.sh | sudo sh -s -- --domain coco.example.com
+#   curl -fsSL https://raw.githubusercontent.com/a1computerinc2026/CocoBot/main/deploy/install.sh | sudo sh -s -- --domain coco.example.com
 #   ... | sudo sh -s -- --check --domain coco.example.com    only checks the server; changes nothing
 #   ... | sudo sh -s -- --uninstall                          stops the server; keeps your data
 #   ... | sudo sh -s -- --domain coco.example.com <code>     also connects the server to CocoBot with a one-time code
@@ -15,13 +15,13 @@ set -eu
 settings() {
   SYSROOT="${OMB_INSTALL_SYSROOT:-}"
   INSTALL_DIR="${OMB_INSTALL_DIR:-/opt/cocobot}"
-  IMAGE_REPO=milind-soni/cocobot
-  RELEASES_URL=https://api.github.com/repos/milind-soni/CocoBot/releases/latest
+  IMAGE_REPO=a1computerinc2026/cocobot
+  RELEASES_URL=https://api.github.com/repos/a1computerinc2026/CocoBot/releases/latest
   ADMIN_URL="${COCOBOT_ADMIN_URL:-https://cloud.cocobot.com}"
-  SCRIPT_URL=https://raw.githubusercontent.com/milind-soni/CocoBot/main/deploy/install.sh
+  SCRIPT_URL=https://raw.githubusercontent.com/a1computerinc2026/CocoBot/main/deploy/install.sh
   # Where the files this installer places come from: this repository at the tag of the version it installs, and at
   # main when that tag does not have them. OMB_INSTALL_SOURCE names one copy to use instead (https://… or file:///…).
-  REPOSITORY_FILES=https://raw.githubusercontent.com/milind-soni/CocoBot
+  REPOSITORY_FILES=https://raw.githubusercontent.com/a1computerinc2026/CocoBot
   SOURCE_ASKED="${OMB_INSTALL_SOURCE:-}"
   SOURCE=""
   SOURCE_NAME=""

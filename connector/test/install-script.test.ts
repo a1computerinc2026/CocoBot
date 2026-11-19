@@ -56,7 +56,7 @@ esac`);
     env: {
       PATH: `${bin}:/usr/bin:/bin`, COCOBOT_ETC_DIR: etc, COCOBOT_APPARMOR_DIR: apparmor, COCOBOT_AUDIT_DIR: audit,
       COCOBOT_INSTALL_DIR: install, COCOBOT_UPDATE_DIR: update, COCOBOT_SBIN_DIR: sbin, COCOBOT_SYSTEMD_DIR: systemd,
-      COCOBOT_ADMIN_URL: "https://cloud.example.test", COCOBOT_CONNECTOR_IMAGE: `ghcr.io/milind-soni/cocobot-connector@sha256:${"1".repeat(64)}`,
+      COCOBOT_ADMIN_URL: "https://cloud.example.test", COCOBOT_CONNECTOR_IMAGE: `ghcr.io/a1computerinc2026/cocobot-connector@sha256:${"1".repeat(64)}`,
       ...options.env,
     },
     timeout: 30_000,

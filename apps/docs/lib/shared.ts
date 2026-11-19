@@ -5,7 +5,7 @@ export const appName = 'CocoBot Docs';
 export const siteUrl = 'https://docs.cocobot.com';
 
 export const gitConfig = {
-  user: 'milind-soni',
+  user: 'a1computerinc2026',
   repo: 'CocoBot',
   branch: 'main',
 };

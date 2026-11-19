@@ -1,7 +1,7 @@
 name: Connector image
 
 # The CocoBot connector (connector/), published with every CocoBot release as
-# ghcr.io/milind-soni/cocobot-connector for linux/amd64 and linux/arm64. The
+# ghcr.io/a1computerinc2026/cocobot-connector for linux/amd64 and linux/arm64. The
 # Admin pins it by digest; the summary prints it. Only a release tag publishes:
 # no pull request starts this, and a manual run on a branch builds nothing.
 on:
