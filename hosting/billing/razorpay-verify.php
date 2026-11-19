@@ -29,6 +29,7 @@ if ($email !== '') {
         'plan'               => $order['tier'],
         'status'             => 'active',
     ]);
+    provisioner_call('provision', (string) $email, (string) $order['tier']);
 }
 
 header('Content-Type: application/json');

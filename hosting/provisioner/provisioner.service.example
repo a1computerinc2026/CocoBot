@@ -1,0 +1,21 @@
+# systemd unit for the CocoBot instance provisioner (VPS).
+# Copy to /etc/systemd/system/cocobot-provisioner.service and edit the values,
+# then: systemctl daemon-reload && systemctl enable --now cocobot-provisioner
+[Unit]
+Description=CocoBot instance provisioner
+After=network-online.target docker.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+Environment=PROVISIONER_SHARED_SECRET=CHANGE_ME
+Environment=COCO_DOMAIN=cocobot.yourdomain.tld
+Environment=COCO_IMAGE=ghcr.io/a1computerinc2026/cocobot:latest
+Environment=PROVISIONER_LISTEN=127.0.0.1
+Environment=PROVISIONER_PORT=9000
+ExecStart=/usr/bin/node /opt/cocobot-provisioner/server.mjs
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target

@@ -287,6 +287,40 @@ function update_subscription(string $provider, string $subId, array $fields): vo
     $stmt->execute($params);
 }
 
+function provisioner_call(string $action, string $email, string $plan = ''): bool
+{
+    $cfg = config()['provisioner'] ?? [];
+    $url = rtrim((string) ($cfg['url'] ?? ''), '/');
+    $key = (string) ($cfg['shared_secret'] ?? '');
+    if ($url === '' || $key === '' || str_contains($key, 'CHANGE_ME')) {
+        return false;
+    }
+    $payload = json_encode(['email' => $email, 'plan' => $plan]);
+    $ch = curl_init($url . '/' . $action);
+    curl_setopt_array($ch, [
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_POST           => true,
+        CURLOPT_HTTPHEADER     => ['Content-Type: application/json', 'X-Provisioner-Key: ' . $key],
+        CURLOPT_POSTFIELDS     => $payload,
+        CURLOPT_TIMEOUT        => 30,
+    ]);
+    curl_exec($ch);
+    $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    curl_close($ch);
+    return $code >= 200 && $code < 300;
+}
+
+function email_for_sub(string $provider, string $subId): ?string
+{
+    $stmt = db()->prepare(
+        'SELECT c.email FROM subscriptions s JOIN customers c ON c.id = s.customer_id
+         WHERE s.provider = ? AND s.provider_sub_id = ?'
+    );
+    $stmt->execute([$provider, $subId]);
+    $row = $stmt->fetch();
+    return $row ? (string) $row['email'] : null;
+}
+
 function upsert_subscription(array $s): void
 {
     $stmt = db()->prepare(

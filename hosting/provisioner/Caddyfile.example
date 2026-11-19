@@ -1,0 +1,18 @@
+# Caddy config for the CocoBot VPS.
+# Copy to /etc/caddy/Caddyfile and edit the domains + email.
+{
+	email you@yourdomain.tld
+}
+
+# CocoBot billing -> provisioner API (the cPanel site calls this over HTTPS).
+api.cocobot.yourdomain.tld {
+	reverse_proxy 127.0.0.1:9000
+}
+
+# Optional landing page at the wildcard apex.
+cocobot.yourdomain.tld {
+	respond "CocoBot Cloud" 200
+}
+
+# Per-customer instances are generated here by the provisioner (do not edit):
+import /etc/caddy/conf.d/cocobot-installs.caddyfile

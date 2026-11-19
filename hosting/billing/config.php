@@ -20,6 +20,13 @@ return [
     // or force 'stripe' / 'razorpay'.
     'provider' => 'auto',
 
+    // VPS instance provisioner (hosting/provisioner). When set, an active
+    // subscription provisions a CocoBot instance and a lapsed one removes it.
+    'provisioner' => [
+        'url'           => 'https://api.cocobot.yourdomain.tld', // Caddy -> 127.0.0.1:9000 on the VPS
+        'shared_secret' => 'CHANGE_ME',                            // PROVISIONER_SHARED_SECRET
+    ],
+
     'stripe' => [
         'secret_key'     => 'sk_test_replace_me',
         'webhook_secret' => 'whsec_replace_me',

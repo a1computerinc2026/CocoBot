@@ -51,6 +51,7 @@ if ($type === 'checkout.session.completed' && ($obj['payment_status'] ?? '') ===
             'currency'             => strtoupper($obj['currency'] ?? '') ?: null,
             'current_period_end'   => stripe_period_end($obj),
         ]);
+        provisioner_call('provision', (string) $email, (string) $tier);
     }
 } elseif ($type === 'customer.subscription.updated' || $type === 'customer.subscription.deleted') {
     $subId = $obj['id'] ?? null;
@@ -67,6 +68,12 @@ if ($type === 'checkout.session.completed' && ($obj['payment_status'] ?? '') ===
             $fields['plan'] = $tier;
         }
         update_subscription('stripe', $subId, $fields);
+        if (($fields['status'] ?? '') === 'canceled') {
+            $email = email_for_sub('stripe', $subId);
+            if ($email) {
+                provisioner_call('deprovision', $email);
+            }
+        }
     }
 } elseif ($type === 'invoice.payment_failed') {
     $subId = $obj['subscription'] ?? ($obj['parent']['subscription_details']['subscription'] ?? null);

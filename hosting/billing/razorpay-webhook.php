@@ -43,12 +43,17 @@ if (in_array($type, ['payment.captured', 'order.paid'], true) && $payment) {
                 'amount_minor'      => isset($payment['amount']) ? (int) $payment['amount'] : null,
                 'currency'          => strtoupper($payment['currency'] ?? '') ?: null,
             ]);
+            provisioner_call('provision', (string) $order['email'], (string) $order['tier']);
         }
     }
 } elseif ($type === 'subscription.cancelled') {
     $sub = $event['payload']['subscription']['entity'] ?? null;
     if ($sub && !empty($sub['id'])) {
         update_subscription('razorpay', (string) $sub['id'], ['status' => 'canceled']);
+        $email = email_for_sub('razorpay', (string) $sub['id']);
+        if ($email) {
+            provisioner_call('deprovision', $email);
+        }
     }
 }
 // subscription.charged / halted / pending: extend as needed (see README).
