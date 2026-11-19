@@ -31,6 +31,8 @@ const sample =
         object: {
           payment_status: "paid",
           client_reference_id: tier,
+          customer: "cus_test_" + Date.now(),
+          subscription: "sub_test_" + Date.now(),
           customer_details: { email: "test-" + Date.now() + "@example.test" },
           amount_total: 4900,
           currency: "usd",
