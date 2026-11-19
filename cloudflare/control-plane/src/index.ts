@@ -2,7 +2,7 @@ import { z } from "zod";
 
 import { accountSession, createAuth, deleteExpiredVerifications } from "./auth";
 import { readConfig, type ControlPlaneConfig } from "./config";
-import { errorResponse, HTTPError, json, preflight, secureResponse, withBoundedRequestBody } from "./http";
+import { errorResponse, HTTPError, json, preflight, secureResponse, withBoundedRequestBody, type JSONValue } from "./http";
 import { limitedOTPResponse } from "./otp-rate-limit";
 import type { CloudflareFetch } from "./cloudflare-api";
 import {
@@ -24,6 +24,13 @@ import {
   revokeInstallation,
   rotateInstallationCredential,
 } from "./installations";
+import {
+  handleCheckout,
+  planCatalog,
+  readBillingConfig,
+  verifyRazorpayWebhook,
+  verifyStripeWebhook,
+} from "./billing";
 
 const SIGN_IN_OTP_PATH = "/api/auth/sign-in/email-otp";
 const ROTATE_ROUTE = /^\/v1\/installations\/([^/]+)\/credentials\/rotate$/;
@@ -173,6 +180,39 @@ async function route(
       }));
     }));
     return response;
+  }
+  if (request.method === "GET" && url.pathname === "/v1/billing/plans") {
+    return json(planCatalog(env as unknown as Record<string, unknown>) as unknown as JSONValue);
+  }
+  if (request.method === "POST" && url.pathname === "/v1/billing/checkout") {
+    const auth = createAuth(env, ctx, config, requestId);
+    const session = await accountSession(request, auth);
+    if (!session) throw new HTTPError(401, "unauthorized");
+    const result = await handleCheckout(request, env as unknown as Record<string, unknown>, session, fetch);
+    return json(result as unknown as JSONValue);
+  }
+  if (request.method === "POST" && url.pathname === "/v1/billing/webhook/stripe") {
+    const billing = readBillingConfig(env as unknown as Record<string, unknown>);
+    if (billing.provider !== "stripe" || !billing.stripe) throw new HTTPError(404, "not_found");
+    const rawBody = await request.text();
+    const signature = request.headers.get("stripe-signature") ?? "";
+    if (!await verifyStripeWebhook(rawBody, signature, billing.stripe.webhookSecret)) {
+      throw new HTTPError(400, "invalid_signature");
+    }
+    // Apply checkout.session.completed / customer.subscription.* to the
+    // account's entitlement here once a store is wired; acknowledging the event
+    // is required so the provider stops retrying.
+    return json({ received: true });
+  }
+  if (request.method === "POST" && url.pathname === "/v1/billing/webhook/razorpay") {
+    const billing = readBillingConfig(env as unknown as Record<string, unknown>);
+    if (billing.provider !== "razorpay" || !billing.razorpay) throw new HTTPError(404, "not_found");
+    const rawBody = await request.text();
+    const signature = request.headers.get("x-razorpay-signature") ?? "";
+    if (!await verifyRazorpayWebhook(rawBody, signature, billing.razorpay.webhookSecret)) {
+      throw new HTTPError(400, "invalid_signature");
+    }
+    return json({ received: true });
   }
   return errorResponse(404, "not_found");
 }
